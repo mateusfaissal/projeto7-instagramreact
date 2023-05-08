@@ -1,4 +1,17 @@
+import { useState } from "react"
+
 export default function Post() {
+
+    //let [postSalvo, setPostSalvo] = useState ('none');
+    let [postName, setPostName] = useState('bookmark-outline')
+
+    function salvaPost () {
+        if (postName === 'bookmark-outline') {
+            setPostName('bookmark');
+        } else {
+            setPostName('bookmark-outline');
+        }
+    }
 
     const posts = [
         { usuario: "meowed", fotousuario: "assets/img/meowed.svg", conteudo: "assets/img/gato-telefone.svg", curtida:"assets/img/respondeai.svg", textocurtida:"respondeai" },
@@ -32,7 +45,7 @@ export default function Post() {
                   <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
                 <div>
-                  <ion-icon name="bookmark-outline"></ion-icon>
+                  <ion-icon onClick ={salvaPost} name={postName}></ion-icon>
                 </div>
                 </div>
                 <div class="curtidas">

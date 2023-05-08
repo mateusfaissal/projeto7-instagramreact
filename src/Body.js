@@ -11,6 +11,7 @@ export default function Body() {
                 <Stories />
                 <Posts />
             </div>
+            <Sidebar />
         </div>    
             )
 }
