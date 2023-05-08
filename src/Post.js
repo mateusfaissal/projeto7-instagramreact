@@ -1,9 +1,42 @@
 import { useState } from "react"
 
 export default function Post() {
+    
+    let [postLiked, setPostLiked] = useState ('none');
+    let [heartName, setHeartName] = useState ('heart-outline');
+    let [postName, setPostName] = useState('bookmark-outline');
+    let [numberLikes, setNumberLikes] = useState(Number('101'));
+    let [clicado, setClicado] = useState(false);
 
-    //let [postSalvo, setPostSalvo] = useState ('none');
-    let [postName, setPostName] = useState('bookmark-outline')
+    function subtraiLike () {
+       setNumberLikes(numberLikes - 1);
+    }
+    function somaLike () {
+        setNumberLikes(numberLikes + 1);
+    }
+
+   function curtePostImg () {
+       if (!clicado) {
+        setClicado (true)
+        setPostLiked('red');
+        setHeartName('heart');
+        somaLike();
+       } 
+        
+        
+   }
+   
+    function curtePost () {
+        if (heartName === 'heart-outline') {
+            setHeartName('heart');
+            setPostLiked('red');
+            somaLike();
+        } else {
+            setHeartName('heart-outline');
+            setPostLiked ('none');
+            subtraiLike();
+        }
+    }
 
     function salvaPost () {
         if (postName === 'bookmark-outline') {
@@ -35,14 +68,14 @@ export default function Post() {
                         </div>
                     </div>
                     <div class="conteudo">
-                        <img src={post.conteudo} alt={post.usuario} />
+                        <img onClick={curtePostImg} src={post.conteudo} alt={post.usuario} />
                     </div>
                     <div class="fundo">
               <div class="acoes">
                 <div>
-                  <ion-icon name="heart-outline"></ion-icon>
-                  <ion-icon name="chatbubble-outline"></ion-icon>
-                  <ion-icon name="paper-plane-outline"></ion-icon>
+                   <ion-icon onClick={curtePost} name={heartName} class={postLiked}></ion-icon> 
+                   <ion-icon name="chatbubble-outline"></ion-icon> 
+                   <ion-icon name="paper-plane-outline"></ion-icon> 
                 </div>
                 <div>
                   <ion-icon onClick ={salvaPost} name={postName}></ion-icon>
@@ -51,7 +84,7 @@ export default function Post() {
                 <div class="curtidas">
                 <img src={post.curtida} alt={post.textocurtida} />
                 <div class="texto">
-                  Curtido por <strong>{post.textocurtida} </strong> e <strong>outras 101.523 pessoas</strong>
+                  Curtido por <strong>{post.textocurtida} </strong> e <strong>outras {numberLikes} pessoas</strong>
                 </div>
               </div>
                 </div>

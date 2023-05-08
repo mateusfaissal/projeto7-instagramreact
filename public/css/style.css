@@ -191,6 +191,7 @@ body {
   margin-right: 6px;
 }
 
+
 .post .fundo .curtidas {
   display: flex;
   align-items: center;
@@ -305,3 +306,7 @@ ion-icon {
   color: black;
 }
 
+
+.red {
+  color: red;
+}
