@@ -12,6 +12,6 @@ export default function Body() {
                 <Posts />
             </div>
             <Sidebar />
-        </div>    
-            )
+        </div>
+    )
 }
